@@ -1,0 +1,60 @@
+.formWrap {
+  margin-left: 40px;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  align-items: start;
+}
+
+.phoneName {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.field {
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.submitBtn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0c0c0c;
+  background-color: #cbe3fe;
+  border: 0.5px solid hwb(211 62% 8% / 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #79a4d2;
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+}

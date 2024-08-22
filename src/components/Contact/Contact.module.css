@@ -1,0 +1,39 @@
+.contactWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-radius: 5px;
+  /* margin-left: 20px; */
+  margin-bottom: 20px;
+  padding: 20px;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 100px;
+}
+
+.contactName {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contactIcon {
+  margin-right: 10px;
+}
+
+.contactNumber {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contactDelete {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0c0c0c;
+  background-color: #cbe3fe;
+  border: 0.5px solid hwb(211 62% 8% / 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
