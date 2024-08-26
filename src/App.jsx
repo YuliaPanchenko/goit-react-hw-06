@@ -1,25 +1,34 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { nanoid } from "nanoid";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
 import contactListData from "../src/data/contactList.json";
+import { useDispatch, useSelector } from "react-redux";
+import { selectNameFilter, setFilterValue } from "./redux/filtersSlice";
+import {
+  addContact,
+  deleteContact,
+  selectContacts,
+} from "./redux/contactsSlice";
 
 function App() {
-  const [contacts, setContacts] = useState(() => {
-    const storedContacts = window.localStorage.getItem("contactValue");
-    // return storedContacts ? JSON.parse(storedContacts) : contactListData;
-    if (storedContacts) {
-      return JSON.parse(storedContacts);
-    } else {
-      return contactListData;
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const filterValue = useSelector(selectNameFilter);
+
+  useEffect(() => {
+    if (!contacts.length) {
+      contactListData.forEach((contact) => {
+        dispatch(addContact(contact));
+      });
     }
-  });
-  const [filterValue, setFilterValue] = useState("");
+  }, [dispatch]);
 
   const handleFilter = (event) => {
     const value = event.target.value.toLowerCase();
-    setFilterValue(value);
+    const action = setFilterValue(value);
+    dispatch(action);
   };
 
   const onAddContact = (contact) => {
@@ -27,24 +36,22 @@ function App() {
       ...contact,
       id: nanoid(),
     };
-    setContacts([finalContact, ...contacts]);
-    console.log(contact);
-    console.log(finalContact);
+    const action = addContact(finalContact);
+    dispatch(action);
   };
 
   const onDeleteContact = (contactId) => {
-    setContacts(contacts.filter((contact) => contact.id !== contactId));
-    console.log(contactId);
+    const action = deleteContact(contactId);
+    dispatch(action);
   };
 
-  useEffect(() => {
-    window.localStorage.setItem("contactValue", JSON.stringify(contacts));
-  }, [contacts]);
-
   const filteredContacts = () => {
-    return contacts.filter((contact) =>
+    const result = contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filterValue)
     );
+    console.log(result);
+
+    return result;
   };
 
   return (
